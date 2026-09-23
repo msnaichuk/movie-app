@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+  background-color: #111;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  padding: 20px;
+  background-color: #1c1c1c;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+.content {
+  padding: 20px;
+}
+
+.content h2 {
+  font-size: 28px;
+}
+
+.movie-list {
+  display: flex;
+  gap: 20px;
+}
+
+.movie-card {
+  background-color: #1c1c1c;
+  padding: 20px;
+  width: 200px;
+}
+
+.footer {
+  padding: 20px;
+  background-color: #1c1c1c;
+  margin-top: 20px;
+}
