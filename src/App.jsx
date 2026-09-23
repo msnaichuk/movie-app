@@ -12,19 +12,30 @@ function App() {
         <p>Movies everyone is watching right now!</p>
 
         <div className="movie-list">
-          <MovieCard />
+          <MovieCard
+            title="Shrek"
+            year="2001"
+            rating="7.9"
+          />
 
-          <div className="movie-card">
-            <h3>The Dark Knight</h3>
-            <p>2008</p>
-            <p>⭐ 9.0</p>
-          </div>
+          <MovieCard
+            title="The Dark Knight"
+            year="2008"
+            rating="9.0"
+          />
 
-          <div className="movie-card">
-            <h3>Inception</h3>
-            <p>2010</p>
-            <p>⭐ 8.8</p>
-          </div>
+          <MovieCard
+            title="Inception"
+            year="2010"
+            rating="8.8"
+          />
+
+          <MovieCard
+            title="Dune: Part Two"
+            year="2024"
+            genre="Sci-Fi"
+            rating="8.4"
+          />
         </div>
       </main>
 

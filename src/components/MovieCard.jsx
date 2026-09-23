@@ -1,9 +1,11 @@
-function MovieCard() {
+function MovieCard(props) {
   return (
     <div className="movie-card">
-      <h3>Interstellar</h3>
-      <p>2014</p>
-      <p>⭐ 8.7</p>
+      <h3>{props.title}</h3>
+      <p>{props.year}</p>
+      {props.genre && <p>{props.genre}</p>}
+      <p>⭐ {props.rating}</p>
+      <button>Add to Watchlist</button>
     </div>
   );
 }
