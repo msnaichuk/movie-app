@@ -2,6 +2,10 @@ import MovieCard from "./components/MovieCard";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
+const title = "Interstellar";
+const year = "2014";
+const rating = "8.7";
+
 function App() {
   return (
     <>
@@ -13,9 +17,9 @@ function App() {
 
         <div className="movie-list">
           <MovieCard
-            title="Shrek"
-            year="2001"
-            rating="7.9"
+            title={title}
+            year={year}
+            rating={rating}
           />
 
           <MovieCard
