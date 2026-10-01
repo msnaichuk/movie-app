@@ -6,6 +6,7 @@ function MovieCard(props) {
       {props.genre && <p>{props.genre}</p>}
       <p>⭐ {props.rating}</p>
       <button>Add to Watchlist</button>
+      {props.director && <p>Director: {props.director}</p>}
     </div>
   );
 }
