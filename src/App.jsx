@@ -2,28 +2,31 @@ import MovieCard from "./components/MovieCard";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
-const movie1 = {
-  title: "Interstellar",
-  year: 2014,
-  genre: "Sci-Fi",
-  rating: 8.7
-  };
-
-const movie2 = {
+const movies = [
+  {
+    title: "Interstellar",
+    year: 2014,
+    genre: "Sci-Fi",
+    rating: 8.7,
+    isFavorite: true
+  },
+  {
     title: "The Dark Knight",
     year: 2008,
     genre: "Action",
-    rating: 9.0
-  };
+    rating: 9.0,
+    isFavorite: false
 
-const movie3 = {
+  },
+  {
     title: "Inception",
     year: 2010,
     genre: "Sci-Fi",
-    rating: 8.8
-  };
+    rating: 8.8,
+    isFavorite: true
 
-const movie4 = {
+  },
+  {
     title: "The Matrix",
     year: 1999,
     genre: "Sci-Fi",
@@ -34,16 +37,33 @@ const movie4 = {
       firstName: "Lana",
       lastName: "Wachowski"
     }
-  };
-
-const movie5 = {
+  },
+  {
     title: "Dune: Part Two",
     year: 2024,
     genre: "Sci-Fi",
-    rating: 8.4
-  };
+    rating: 8.4,
+    isFavorite: true
+  }
+];
+
+movies.push({
+  title: "Shrek",
+  year: 2001,
+  genre: "Animation",
+  rating: 7.9,
+  isFavorite: true
+});
+
+movies.pop();
 
 function App() {
+  console.log(movies.length);
+  console.log(movies[0]);
+  console.log(movies[5]);
+  console.log(movies[0].title);
+  console.log(movies[3].title);
+
   return (
     <>
       <Navbar />
@@ -54,41 +74,48 @@ function App() {
 
         <div className="movie-list">
           <MovieCard
-            title={movie1.title}
-            year={movie1.year}
-            genre={movie1.genre}
-            rating={movie1.rating}
+            title={movies[0].title}
+            year={movies[0].year}
+            genre={movies[0].genre}
+            rating={movies[0].rating}
+            isFavorite={movies[0].isFavorite}
           />
 
           <MovieCard
-            title={movie2.title}
-            year={movie2.year}
-            genre={movie2.genre}
-            rating={movie2.rating}
+            title={movies[1].title}
+            year={movies[1].year}
+            genre={movies[1].genre}
+            rating={movies[1].rating}
+            isFavorite={movies[1].isFavorite}
           />
 
           <MovieCard
-            title={movie3.title}
-            year={movie3.year}
-            genre={movie3.genre}
-            rating={movie3.rating}
+            title={movies[2].title}
+            year={movies[2].year}
+            genre={movies[2].genre}
+            rating={movies[2].rating}
+            isFavorite={movies[2].isFavorite}
           />
 
           <MovieCard
-            title={movie4.title}
-            year={movie4.year}
-            genre={movie4.genre}
-            rating={movie4.rating}
-            isFavorite={movie4.isFavorite}
-
-            director={movie4.director.firstName + " " + movie4.director.lastName}
+            title={movies[3].title}
+            year={movies[3].year}
+            genre={movies[3].genre}
+            rating={movies[3].rating}
+            isFavorite={movies[3].isFavorite}
+            director={
+              movies[3].director.firstName +
+              " " +
+              movies[3].director.lastName
+            }
           />
 
           <MovieCard
-            title={movie5.title}
-            year={movie5.year}
-            genre={movie5.genre}
-            rating={movie5.rating}
+            title={movies[4].title}
+            year={movies[4].year}
+            genre={movies[4].genre}
+            rating={movies[4].rating}
+            isFavorite={movies[4].isFavorite}
           />
 
         </div>
