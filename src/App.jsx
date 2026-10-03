@@ -13,7 +13,8 @@ const movies = [
     director: {
       firstName: "Lana",
       lastName: "Wachowski"
-    }
+    },
+    poster: "https://m.media-amazon.com/images/M/MV5BYzdjMDAxZGItMjI2My00ODA1LTlkNzItOWFjMDU5ZDJlYWY3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
   },
   {
     id: 2,
@@ -123,6 +124,7 @@ function App() {
               rating={movie.rating}
               isFavorite={movie.isFavorite}
               director={movie.director.firstName + " " + movie.director.lastName}
+              poster={movie.poster}
             />
         ))}
       </div>

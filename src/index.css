@@ -43,3 +43,10 @@ body {
   background-color: #1c1c1c;
   margin-top: 20px;
 }
+
+.movie-card img {
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+}
