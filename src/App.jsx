@@ -26,7 +26,8 @@ const movies = [
     director: {
       firstName: "Lana",
       lastName: "Wachowski"
-    }
+    },
+    poster: "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_FMjpg_UX1000_.jpg"
   },
   {
     id: 3,
@@ -38,7 +39,8 @@ const movies = [
     director: {
       firstName: "Lana",
       lastName: "Wachowski"
-    }
+    },
+    poster: "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_FMjpg_UX1000_.jpg"
   },
   {
     id: 4,
@@ -51,7 +53,8 @@ const movies = [
     director: {
       firstName: "Lana",
       lastName: "Wachowski"
-    }
+    },
+    poster: "https://m.media-amazon.com/images/M/MV5BN2NmN2VhMTQtMDNiOS00NDlhLTliMjgtODE2ZTY0ODQyNDRhXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
   },
   {
     id: 5,
@@ -63,23 +66,13 @@ const movies = [
     director: {
       firstName: "Denis",
       lastName: "Villeneuve"
-    }
-  },
-  {
-  id: 6,
-  title: "The Matrix",
-  year: 1999,
-  rating: 8.7,
-  genre: "Sci-Fi",
-  director: {
-    firstName: "Lana",
-    lastName: "Wachowski"
+    },
+    poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1HYYqIoovqLVr7DQU9tevo_bMrzQqJ7LQiVnjyK1x5BUHqrjFB_JDtftcR1Sxo1cPE0fPmg&s=10"
   }
- }
 ];
 
 movies.push({
-  id: 7,
+  id: 6,
   title: "Shrek",
   year: 2001,
   genre: "Animation",
@@ -88,7 +81,8 @@ movies.push({
   director: {
     firstName: "Lana",
     lastName: "Wachowski"
-  }
+  },
+  poster: "https://m.media-amazon.com/images/M/MV5BN2FkMTRkNTUtYTI0NC00ZjI4LWI5MzUtMDFmOGY0NmU2OGY1XkEyXkFqcGc@._V1_.jpg"
 });
 
 movies.pop();
