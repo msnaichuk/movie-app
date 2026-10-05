@@ -93,13 +93,27 @@ const doubledNumbers = numbers.map((number) => {
   return number * 2
 })
 
+function add(a, b) {
+  return a + b;
+}
+
+add(2, 6);
+
+function getDirectorName(firstName, lastName) {
+  return firstName + " " + lastName;
+}
+getDirectorName(movies[0].director.firstName, movies[0].director.lastName);
+
 function App() {
   console.log(movies.length);
   console.log(movies[0]);
-  console.log(movies[5]);
+  console.log(movies[4]);
   console.log(movies[0].title);
   console.log(movies[3].title);
   console.log(doubledNumbers);
+  console.log(add(2, 6));
+  console.log(getDirectorName(movies[0].director.firstName, movies[0].director.lastName));
+
   return (
     <>
       <Navbar />
@@ -108,8 +122,8 @@ function App() {
         <h2>Trending Movies</h2>
         <p>Movies everyone is watching right now!</p>
 
-       <div className="movie-list">
-        {movies.map((movie) => (
+        <div className="movie-list">
+          {movies.map((movie) => (
             <MovieCard
               key={movie.id}
               title={movie.title}
@@ -120,8 +134,8 @@ function App() {
               director={movie.director.firstName + " " + movie.director.lastName}
               poster={movie.poster}
             />
-        ))}
-      </div>
+          ))}
+        </div>
       </main>
 
       <Footer />
