@@ -99,9 +99,7 @@ function add(a, b) {
 
 add(2, 6);
 
-function getDirectorName(firstName, lastName) {
-  return firstName + " " + lastName;
-}
+const getDirectorName = (firstName, lastName) => firstName + " " + lastName;
 getDirectorName(movies[0].director.firstName, movies[0].director.lastName);
 
 function App() {
@@ -131,7 +129,7 @@ function App() {
               genre={movie.genre}
               rating={movie.rating}
               isFavorite={movie.isFavorite}
-              director={movie.director.firstName + " " + movie.director.lastName}
+              director={getDirectorName(movie.director.firstName, movie.director.lastName)}
               poster={movie.poster}
             />
           ))}
