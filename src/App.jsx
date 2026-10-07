@@ -47,7 +47,7 @@ const movies = [
     title: "The Matrix",
     year: 1999,
     genre: "Sci-Fi",
-    rating: 8.7,
+    rating: 7.7,
     isFavorite: false,
 
     director: {
@@ -112,6 +112,10 @@ function App() {
   console.log(add(2, 6));
   console.log(getDirectorName(movies[0].director.firstName, movies[0].director.lastName));
 
+  const topMovies = movies.filter((movie) => {
+    return movie.rating >= 8
+  });
+
   return (
     <>
       <Navbar />
@@ -121,7 +125,7 @@ function App() {
         <p>Movies everyone is watching right now!</p>
 
         <div className="movie-list">
-          {movies.map((movie) => (
+          {topMovies.map((movie) => (
             <MovieCard
               key={movie.id}
               title={movie.title}
