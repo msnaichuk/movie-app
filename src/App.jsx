@@ -102,19 +102,19 @@ add(2, 6);
 const getDirectorName = (firstName, lastName) => firstName + " " + lastName;
 getDirectorName(movies[0].director.firstName, movies[0].director.lastName);
 
-function App() {
-  console.log(movies.length);
-  console.log(movies[0]);
-  console.log(movies[4]);
-  console.log(movies[0].title);
-  console.log(movies[3].title);
-  console.log(doubledNumbers);
-  console.log(add(2, 6));
-  console.log(getDirectorName(movies[0].director.firstName, movies[0].director.lastName));
 
-  const topMovies = movies.filter((movie) => {
-    return movie.rating >= 8
-  });
+
+function App() {
+  const topMovies = movies.filter((movie) => movie.rating >= 8);
+  console.log(topMovies);
+
+  const selectedMovie = movies.find((movie) => movie.id ===33);
+
+  if (selectedMovie !== undefined) {
+    console.log(selectedMovie.title);
+  } else {
+    console.log("Movie not found");
+  }
 
   return (
     <>
