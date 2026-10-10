@@ -116,16 +116,29 @@ function App() {
     console.log("Movie not found");
   }
 
+  const sciFiMovies = movies.filter((movie) => movie.genre === "Sci-Fi");
+  console.log(sciFiMovies);
+
+  const favoriteMovie = movies.find((movie) => movie.id === 2);
+  console.log(favoriteMovie);
+
+  const searchText = "in"
+
+  const searchResults = movies.filter((movie) => movie.title.toLowerCase().includes(searchText.toLowerCase()));
+  console.log(searchResults);
+
+  const bestMovies = movies.filter((movie) => movie.rating >= 8.5);
+
   return (
     <>
-      <Navbar />
+    <Navbar />
 
       <main className="content">
         <h2>Trending Movies</h2>
         <p>Movies everyone is watching right now!</p>
 
         <div className="movie-list">
-          {topMovies.map((movie) => (
+          {bestMovies.map((movie) => (
             <MovieCard
               key={movie.id}
               title={movie.title}
