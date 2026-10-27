@@ -129,6 +129,42 @@ function App() {
 
   const bestMovies = movies.filter((movie) => movie.rating >= 8.5);
 
+  const {title, rating, director} = movies[1];
+  console.log(title, rating, director);
+
+  const genres = [
+    "Action",
+    "Comedy",
+    "Horror",
+    "Sci-Fi",
+  ];
+  const [first, second, , fourth] = genres;
+  console.log(first, second, fourth);
+
+  const practiceMovies = [
+    "Interstellar",
+    "Inception"
+  ];
+  const updatedMovies = [
+    ...practiceMovies,
+    "The Dark Knight"
+  ];
+  console.log(practiceMovies);
+  console.log(updatedMovies);
+
+  const newMovie = {
+    id: 1,
+    title: "Interstellar",
+    rating: 8.7,
+    isFavorite: false,
+  };
+  const updatedNewMovie = {
+    ...newMovie,
+    isFavorite: true,
+  };
+  console.log(newMovie);
+  console.log(updatedNewMovie);
+
   return (
     <>
     <Navbar />

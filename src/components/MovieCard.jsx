@@ -12,20 +12,20 @@ function getFavoriteLabel(isFavorite) {
   return isFavorite ? "❤️ Favorite" : "♡ Not Favorite";
 }
 
-function MovieCard(props) {
+function MovieCard({ poster, title, year, genre, rating, isFavorite, director }) {
   return (
     <div className="movie-card">
-      
-      
-      <img src={props.poster} alt={props.title} />
-      <h3>{props.title}</h3>
-      <p>{props.year}</p>
-      {props.genre && <p>{props.genre}</p>}
-      <p>⭐ {props.rating}</p>
-      <p>{getMovieVerdict(props.rating)}</p>
+
+
+      <img src={poster} alt={title} />
+      <h3>{title}</h3>
+      <p>{year}</p>
+      {genre && <p>{genre}</p>}
+      <p>⭐ {rating}</p>
+      <p>{getMovieVerdict(rating)}</p>
       <button>Add to Watchlist</button>
-      <p>{getFavoriteLabel(props.isFavorite)}</p>
-      {props.director && <p>Director: {props.director}</p>}
+      <p>{getFavoriteLabel(isFavorite)}</p>
+      {director && <p>Director: {director}</p>}
     </div>
   );
 }
