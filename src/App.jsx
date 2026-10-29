@@ -11,8 +11,8 @@ const movies = [
     rating: 8.7,
     isFavorite: true,
     director: {
-      firstName: "Lana",
-      lastName: "Wachowski"
+      firstName: "Christopher",
+      lastName: "Nolan"
     },
     poster: "https://m.media-amazon.com/images/M/MV5BYzdjMDAxZGItMjI2My00ODA1LTlkNzItOWFjMDU5ZDJlYWY3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
   },
@@ -24,8 +24,8 @@ const movies = [
     rating: 9.0,
     isFavorite: false,
     director: {
-      firstName: "Lana",
-      lastName: "Wachowski"
+      firstName: "Christopher",
+      lastName: "Nolan"
     },
     poster: "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_FMjpg_UX1000_.jpg"
   },
@@ -37,8 +37,8 @@ const movies = [
     rating: 8.8,
     isFavorite: true,
     director: {
-      firstName: "Lana",
-      lastName: "Wachowski"
+      firstName: "Christopher",
+      lastName: "Nolan"
     },
     poster: "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_FMjpg_UX1000_.jpg"
   },
@@ -50,10 +50,14 @@ const movies = [
     rating: 7.7,
     isFavorite: false,
 
-    director: {
+    director: [{
       firstName: "Lana",
       lastName: "Wachowski"
     },
+    {
+      firstName: "Lilly",
+      lastName: "Wachowski"
+    }],
     poster: "https://m.media-amazon.com/images/M/MV5BN2NmN2VhMTQtMDNiOS00NDlhLTliMjgtODE2ZTY0ODQyNDRhXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
   },
   {
@@ -78,10 +82,14 @@ movies.push({
   genre: "Animation",
   rating: 7.9,
   isFavorite: true,
-  director: {
-    firstName: "Lana",
-    lastName: "Wachowski"
+  director: [{
+    firstName: "Andrew",
+    lastName: "Adamson"
   },
+  {
+    firstName: "Vicky",
+    lastName: "Jenson"
+  }],
   poster: "https://m.media-amazon.com/images/M/MV5BN2FkMTRkNTUtYTI0NC00ZjI4LWI5MzUtMDFmOGY0NmU2OGY1XkEyXkFqcGc@._V1_.jpg"
 });
 
@@ -101,6 +109,61 @@ add(2, 6);
 
 const getDirectorName = (firstName, lastName) => firstName + " " + lastName;
 getDirectorName(movies[0].director.firstName, movies[0].director.lastName);
+
+function getTicketPrice(rating) {
+  if (rating >= 9) {
+    return 15;
+  } else if (rating >= 7) {
+    return 10;
+  } else {
+    return 5;
+  }
+}
+
+console.log(getTicketPrice(5));
+
+const moviesList = [
+  { title: "Interstellar", rating: 8.7, genre: "Sci-Fi"},
+  { title: "The Dark Knight", rating: 9.0, genre: "Action"},
+  { title: "Inception", rating: 8.8, genre: "Sci-Fi" }
+];
+
+const goodMovies = moviesList.filter((movie) => {
+  return movie.rating >= 8.5;
+});
+
+const titles = goodMovies.map((movie) => {
+  return movie.title;
+});
+
+const sciFiTitles = moviesList
+  .filter((movie) => movie.genre === "Sci-Fi" && movie.rating >= 8)
+  .map((movie) => movie.title);
+console.log(sciFiTitles);
+
+console.log(titles);
+
+function findMovieByTitle(searchText) {
+  return moviesList.find((movie) => movie.title.toLowerCase().includes(searchText.toLowerCase()));
+}
+
+console.log(findMovieByTitle("inception"));
+
+const movieTest = {
+  id: 1,
+  title: "Interstellar",
+  rating: 8.7,
+  isFavorite: false,
+};
+
+function updatedMovieTest(movieTest) {
+  return {
+    ...movieTest,
+    isFavorite: true,
+  };
+}
+console.log(movieTest);
+console.log(updatedMovieTest(movieTest));
 
 
 
@@ -164,6 +227,11 @@ function App() {
   };
   console.log(newMovie);
   console.log(updatedNewMovie);
+
+  const topFavoriteMovies = movies
+    .filter((movie) => movie.rating >= 8.5 && movie.isFavorite === true)
+    .map((movie) => movie.title);
+  console.log(topFavoriteMovies);
 
   return (
     <>
