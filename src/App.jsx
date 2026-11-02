@@ -1,6 +1,7 @@
 import MovieCard from "./components/MovieCard";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import { useState } from "react";
 
 const movies = [
   {
@@ -93,164 +94,67 @@ movies.push({
   poster: "https://m.media-amazon.com/images/M/MV5BN2FkMTRkNTUtYTI0NC00ZjI4LWI5MzUtMDFmOGY0NmU2OGY1XkEyXkFqcGc@._V1_.jpg"
 });
 
-movies.pop();
-
-const numbers = [1, 2, 3, 4]
-
-const doubledNumbers = numbers.map((number) => {
-  return number * 2
-})
-
-function add(a, b) {
-  return a + b;
-}
-
-add(2, 6);
-
 const getDirectorName = (firstName, lastName) => firstName + " " + lastName;
 getDirectorName(movies[0].director.firstName, movies[0].director.lastName);
-
-function getTicketPrice(rating) {
-  if (rating >= 9) {
-    return 15;
-  } else if (rating >= 7) {
-    return 10;
-  } else {
-    return 5;
-  }
-}
-
-console.log(getTicketPrice(5));
-
-const moviesList = [
-  { title: "Interstellar", rating: 8.7, genre: "Sci-Fi"},
-  { title: "The Dark Knight", rating: 9.0, genre: "Action"},
-  { title: "Inception", rating: 8.8, genre: "Sci-Fi" }
-];
-
-const goodMovies = moviesList.filter((movie) => {
-  return movie.rating >= 8.5;
-});
-
-const titles = goodMovies.map((movie) => {
-  return movie.title;
-});
-
-const sciFiTitles = moviesList
-  .filter((movie) => movie.genre === "Sci-Fi" && movie.rating >= 8)
-  .map((movie) => movie.title);
-console.log(sciFiTitles);
-
-console.log(titles);
-
-function findMovieByTitle(searchText) {
-  return moviesList.find((movie) => movie.title.toLowerCase().includes(searchText.toLowerCase()));
-}
-
-console.log(findMovieByTitle("inception"));
-
-const movieTest = {
-  id: 1,
-  title: "Interstellar",
-  rating: 8.7,
-  isFavorite: false,
-};
-
-function updatedMovieTest(movieTest) {
-  return {
-    ...movieTest,
-    isFavorite: true,
-  };
-}
-console.log(movieTest);
-console.log(updatedMovieTest(movieTest));
 
 
 
 function App() {
-  const topMovies = movies.filter((movie) => movie.rating >= 8);
-  console.log(topMovies);
+  const [watchedCount, setWatchedCount] = useState(0);
+  const [movieList, setMovieList] = useState(movies);
+  const [showWatchlistOnly, setShowWatchlistOnly] = useState(false);
 
-  const selectedMovie = movies.find((movie) => movie.id ===33);
-
-  if (selectedMovie !== undefined) {
-    console.log(selectedMovie.title);
-  } else {
-    console.log("Movie not found");
+  function toggleWatchlist(movieId) {
+    setMovieList((prevMovies) =>
+      prevMovies.map((movie) => {
+        if (movie.id === movieId) {
+          return { ...movie, isFavorite: !movie.isFavorite };
+        }
+        return movie;
+      })
+    );
+    console.log(movieId);
   }
 
-  const sciFiMovies = movies.filter((movie) => movie.genre === "Sci-Fi");
-  console.log(sciFiMovies);
-
-  const favoriteMovie = movies.find((movie) => movie.id === 2);
-  console.log(favoriteMovie);
-
-  const searchText = "in"
-
-  const searchResults = movies.filter((movie) => movie.title.toLowerCase().includes(searchText.toLowerCase()));
-  console.log(searchResults);
-
-  const bestMovies = movies.filter((movie) => movie.rating >= 8.5);
-
-  const {title, rating, director} = movies[1];
-  console.log(title, rating, director);
-
-  const genres = [
-    "Action",
-    "Comedy",
-    "Horror",
-    "Sci-Fi",
-  ];
-  const [first, second, , fourth] = genres;
-  console.log(first, second, fourth);
-
-  const practiceMovies = [
-    "Interstellar",
-    "Inception"
-  ];
-  const updatedMovies = [
-    ...practiceMovies,
-    "The Dark Knight"
-  ];
-  console.log(practiceMovies);
-  console.log(updatedMovies);
-
-  const newMovie = {
-    id: 1,
-    title: "Interstellar",
-    rating: 8.7,
-    isFavorite: false,
-  };
-  const updatedNewMovie = {
-    ...newMovie,
-    isFavorite: true,
-  };
-  console.log(newMovie);
-  console.log(updatedNewMovie);
-
-  const topFavoriteMovies = movies
-    .filter((movie) => movie.rating >= 8.5 && movie.isFavorite === true)
-    .map((movie) => movie.title);
-  console.log(topFavoriteMovies);
+  const bestMovies = movieList.filter((movie) => movie.rating >= 8.5);
 
   return (
     <>
-    <Navbar />
+      <Navbar />
 
       <main className="content">
         <h2>Trending Movies</h2>
         <p>Movies everyone is watching right now!</p>
 
+        <p>Movies watched: {watchedCount}</p>
+
+        <button onClick={() => setWatchedCount((previous) => previous + 1)}>
+          Mark as Watched
+        </button>
+
+        <button onClick={() => setWatchedCount(0)}>
+          Reset Watched Count
+        </button>
+
+        <button onClick={() => setShowWatchlistOnly((previous) => !previous)}>
+          {showWatchlistOnly ? "Show all movies" : "Show watchlist only"}
+        </button>
+
         <div className="movie-list">
           {bestMovies.map((movie) => (
             <MovieCard
               key={movie.id}
+              id={movie.id}
+              onToggleWatchlist={toggleWatchlist}
               title={movie.title}
               year={movie.year}
               genre={movie.genre}
               rating={movie.rating}
               isFavorite={movie.isFavorite}
-              director={getDirectorName(movie.director.firstName, movie.director.lastName)}
+              director={getDirectorName(
+                movie.director.firstName,
+                movie.director.lastName,
+              )}
               poster={movie.poster}
             />
           ))}
