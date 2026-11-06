@@ -94,15 +94,20 @@ movies.push({
   poster: "https://m.media-amazon.com/images/M/MV5BN2FkMTRkNTUtYTI0NC00ZjI4LWI5MzUtMDFmOGY0NmU2OGY1XkEyXkFqcGc@._V1_.jpg"
 });
 
-const getDirectorName = (firstName, lastName) => firstName + " " + lastName;
-getDirectorName(movies[0].director.firstName, movies[0].director.lastName);
-
-
+function getDirectorName(director) {
+  if (Array.isArray(director)) {
+    return director
+    .map(person => person.firstName + " " + person.lastName)
+    .join(", ");
+  }
+  return director.firstName + " " + director.lastName;
+}
 
 function App() {
   const [watchedCount, setWatchedCount] = useState(0);
   const [movieList, setMovieList] = useState(movies);
   const [showWatchlistOnly, setShowWatchlistOnly] = useState(false);
+  const [search, setSearch] = useState("");
 
   function toggleWatchlist(movieId) {
     setMovieList((prevMovies) =>
@@ -116,7 +121,19 @@ function App() {
     console.log(movieId);
   }
 
-  const bestMovies = movieList.filter((movie) => movie.rating >= 8.5);
+  const bestMovies = movieList.filter(movie => {
+    if (movie.rating < 7.5) {
+      return false;
+  }
+    if (showWatchlistOnly) {
+      return movie.isFavorite;
+    }
+    return true;
+  });
+
+  const filteredMovies = bestMovies.filter((movie) =>
+    movie.title.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <>
@@ -140,8 +157,19 @@ function App() {
           {showWatchlistOnly ? "Show all movies" : "Show watchlist only"}
         </button>
 
+        <input
+          type="text"
+          placeholder="Search movies..."
+          value={search}
+          onChange={event => setSearch(event.target.value)}
+        />
+
+        <button onClick={() => setSearch("")}>
+          Clear Search
+        </button>
+
         <div className="movie-list">
-          {bestMovies.map((movie) => (
+          {filteredMovies.map((movie) => (
             <MovieCard
               key={movie.id}
               id={movie.id}
@@ -152,8 +180,7 @@ function App() {
               rating={movie.rating}
               isFavorite={movie.isFavorite}
               director={getDirectorName(
-                movie.director.firstName,
-                movie.director.lastName,
+                movie.director
               )}
               poster={movie.poster}
             />
