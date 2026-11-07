@@ -135,6 +135,8 @@ function App() {
     movie.title.toLowerCase().includes(search.toLowerCase())
   );
 
+  const watchlistCount = movieList.filter(movie => movie.isFavorite).length;
+
   return (
     <>
       <Navbar />
@@ -152,6 +154,8 @@ function App() {
         <button onClick={() => setWatchedCount(0)}>
           Reset Watched Count
         </button>
+
+        <h2> My Watchlist ({watchlistCount})</h2>
 
         <button onClick={() => setShowWatchlistOnly((previous) => !previous)}>
           {showWatchlistOnly ? "Show all movies" : "Show watchlist only"}
