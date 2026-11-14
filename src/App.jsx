@@ -1,7 +1,8 @@
 import MovieCard from "./components/MovieCard";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import { useState } from "react";
+import { useState } from "react"
+import MovieForm from "./components/MovieForm";
 
 const movies = [
   {
@@ -137,6 +138,13 @@ function App() {
 
   const watchlistCount = movieList.filter(movie => movie.isFavorite).length;
 
+  function addMovie(newMovie) {
+    setMovieList(prevMovies =>[
+      ...prevMovies,
+      newMovie
+    ])
+  }
+
   return (
     <>
       <Navbar />
@@ -171,6 +179,8 @@ function App() {
         <button onClick={() => setSearch("")}>
           Clear Search
         </button>
+
+        <MovieForm onAddMovie={addMovie} />
 
         <div className="movie-list">
           {filteredMovies.map((movie) => (
