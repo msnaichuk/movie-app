@@ -12,7 +12,7 @@ function getFavoriteLabel(isFavorite) {
   return isFavorite ? "❤️ Favorite" : "♡ Not Favorite";
 }
 
-function MovieCard({ id, onToggleWatchlist, poster, title, year, genre, rating, isFavorite, director }) {
+function MovieCard({ id, onToggleWatchlist, poster, title, year, genre, rating, isFavorite, director, movie, onDelete }) {
   return (
     <div className="movie-card">
 
@@ -28,6 +28,7 @@ function MovieCard({ id, onToggleWatchlist, poster, title, year, genre, rating, 
       </button>
       <p>{getFavoriteLabel(isFavorite)}</p>
       {director && <p>Director: {director}</p>}
+      <button onClick={() => onDelete(movie.id)}>Delete </button>
     </div>
   );
 }

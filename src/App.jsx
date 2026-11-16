@@ -145,6 +145,12 @@ function App() {
     ])
   }
 
+  function deleteMovie(movieId) {
+    setMovieList(prevMovies =>
+      prevMovies.filter(movie => movie.id !== movieId)
+    );
+  }
+
   return (
     <>
       <Navbar />
@@ -186,6 +192,8 @@ function App() {
           {filteredMovies.map((movie) => (
             <MovieCard
               key={movie.id}
+              movie={movie}
+              onDelete={deleteMovie}
               id={movie.id}
               onToggleWatchlist={toggleWatchlist}
               title={movie.title}
