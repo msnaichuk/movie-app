@@ -12,22 +12,22 @@ function getFavoriteLabel(isFavorite) {
   return isFavorite ? "❤️ Favorite" : "♡ Not Favorite";
 }
 
-function MovieCard({ id, onToggleWatchlist, poster, title, year, genre, rating, isFavorite, director, movie, onDelete }) {
+function MovieCard({ onToggleWatchlist, movie, director, onIncreaseRating, onDelete }) {
   return (
     <div className="movie-card">
 
 
-      <img src={poster} alt={title} />
-      <h3>{title}</h3>
-      <p>{year}</p>
-      {genre && <p>{genre}</p>}
-      <p>⭐ {rating}</p>
-      <p>{getMovieVerdict(rating)}</p>
-      <button onClick={() => onToggleWatchlist(id)}>
-       {isFavorite ? "Remove from Watchlist" : "Add to Watchlist"}
+      <img src={movie.poster || "https://placehold.co/300x450?text=No+Poster"} alt={movie.title} />
+      <h3>{movie.title}</h3>
+      <p>{movie.year}</p>
+      {movie.genre && <p>{movie.genre}</p>}
+      <p>⭐ {movie.rating}</p>
+      <p>{getMovieVerdict(movie.rating)}</p>
+      <button onClick={() => onToggleWatchlist(movie.id)}>
+       {getFavoriteLabel(movie.isFavorite)}
       </button>
-      <p>{getFavoriteLabel(isFavorite)}</p>
       {director && <p>Director: {director}</p>}
+      <button onClick={() => onIncreaseRating(movie.id)}>Increase Rating</button>
       <button onClick={() => onDelete(movie.id)}>Delete </button>
     </div>
   );

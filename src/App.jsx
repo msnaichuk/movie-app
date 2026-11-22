@@ -82,7 +82,7 @@ movies.push({
   title: "Shrek",
   year: 2001,
   genre: "Animation",
-  rating: 7.9,
+  rating: 6.9,
   isFavorite: true,
   director: [{
     firstName: "Andrew",
@@ -96,6 +96,13 @@ movies.push({
 });
 
 function getDirectorName(director) {
+  if (!director) {
+    return "Unknown";
+  }
+  if (typeof director === "string") {
+    return director;
+  }
+
   if (Array.isArray(director)) {
     return director
     .map(person => person.firstName + " " + person.lastName)
@@ -109,6 +116,7 @@ function App() {
   const [movieList, setMovieList] = useState(movies);
   const [showWatchlistOnly, setShowWatchlistOnly] = useState(false);
   const [search, setSearch] = useState("");
+  const [showTopRatedOnly, setShowTopRatedOnly] = useState(false);
 
   function toggleWatchlist(movieId) {
     setMovieList((prevMovies) =>
@@ -123,7 +131,7 @@ function App() {
   }
 
   const bestMovies = movieList.filter(movie => {
-    if (movie.rating < 7.5) {
+    if (showTopRatedOnly && movie.rating < 7.5) {
       return false;
   }
     if (showWatchlistOnly) {
@@ -151,6 +159,16 @@ function App() {
     );
   }
 
+  function increaseRating(movieId) {
+    setMovieList(prevMovies =>
+      prevMovies.map(movie => {
+        return movie.id === movieId
+          ? {
+            ...movie, rating: Math.min(10, Math.round((movie.rating + 0.1) * 10)/10) }
+          : movie;
+      }));
+          }
+
   return (
     <>
       <Navbar />
@@ -167,6 +185,10 @@ function App() {
 
         <button onClick={() => setWatchedCount(0)}>
           Reset Watched Count
+        </button>
+
+        <button onClick={() => setShowTopRatedOnly((previous) => !previous)}>
+          {showTopRatedOnly ? "Show all movies" : "Show top rated only"}
         </button>
 
         <h2> My Watchlist ({watchlistCount})</h2>
@@ -193,18 +215,12 @@ function App() {
             <MovieCard
               key={movie.id}
               movie={movie}
+              onIncreaseRating={increaseRating}
               onDelete={deleteMovie}
-              id={movie.id}
               onToggleWatchlist={toggleWatchlist}
-              title={movie.title}
-              year={movie.year}
-              genre={movie.genre}
-              rating={movie.rating}
-              isFavorite={movie.isFavorite}
               director={getDirectorName(
                 movie.director
               )}
-              poster={movie.poster}
             />
           ))}
         </div>
